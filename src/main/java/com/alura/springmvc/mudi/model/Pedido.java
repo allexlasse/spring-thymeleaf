@@ -4,9 +4,13 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.alura.springmvc.mudi.model.enums.StatusPedido;
 
 @Entity
 public class Pedido {
@@ -21,8 +25,27 @@ public class Pedido {
 	private String urlImg;
 	private String descricao;
 	
+	@Enumerated(EnumType.STRING)
+	private StatusPedido status;
 	
+	
+
 	public Pedido() {}
+	
+	public Pedido(String nome, String urlProd, String urlImg, String descricao) {
+		this.nome = nome;
+		this.urlProd = urlProd;
+		this.urlImg = urlImg;
+		this.descricao = descricao;
+	}
+	
+	public Pedido(String nome, String urlProd, String urlImg, String descricao, StatusPedido status) {
+		this.nome = nome;
+		this.urlProd = urlProd;
+		this.urlImg = urlImg;
+		this.descricao = descricao;
+		this.status = status;
+	}
 	
 	public Pedido(String nome, BigDecimal valor, LocalDate data, String urlProd, String urlImg, String descricao) {
 		super();
@@ -35,6 +58,7 @@ public class Pedido {
 	}
 	
 	
+
 	public String getNome() {
 		return nome;
 	}
@@ -72,5 +96,12 @@ public class Pedido {
 		this.descricao = descricao;
 	}
 	
+	public StatusPedido getStatus() {
+		return status;
+	}
+	
+	public void setStatus(StatusPedido status) {
+		this.status = status;
+	}
 	
 }
